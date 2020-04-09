@@ -100,8 +100,6 @@ class BurgerBuilder extends Component{
             pathname:'/checkout',
             search:'?' + queryString
         })
-
-
     }
 
     render(){
