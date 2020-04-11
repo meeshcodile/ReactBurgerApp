@@ -5,10 +5,24 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
-import {createStore} from 'redux'
-import reducer from './store/reducer'
+import {createStore,applyMiddleware, compose, combineReducers} from 'redux'
+import burgerBuilderReducer from './store/reducers/burgerBuilder'
+import thunk from 'redux-thunk'
+import orderReducer  from './store/reducers/order'
 
-const store = createStore(reducer)
+
+// using the thunk to be able to use asynchronous code in our action creators this however is the config
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const rootReducer = combineReducers({
+  burgerBuilder:burgerBuilderReducer,
+  order:orderReducer
+})
+
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 
 const app = ( 
