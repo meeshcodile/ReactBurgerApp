@@ -9,14 +9,15 @@ import {createStore,applyMiddleware, compose, combineReducers} from 'redux'
 import burgerBuilderReducer from './store/reducers/burgerBuilder'
 import thunk from 'redux-thunk'
 import orderReducer  from './store/reducers/order'
-
+import authReducer from './store/reducers/auth'
 
 // using the thunk to be able to use asynchronous code in our action creators this however is the config
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   burgerBuilder:burgerBuilderReducer,
-  order:orderReducer
+  order:orderReducer,
+  auth:authReducer
 })
 
 const store = createStore(
