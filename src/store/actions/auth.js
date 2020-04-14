@@ -45,9 +45,10 @@ export const auth =(email, password, isSignUp)=>{
             password:password,
             returnSecureToken:true
         }
-        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDwA_N026nTTaVl7-VGrVTomMYpG7EGoOE'
+        let apiKey = process.env.API_KEY
+        let url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`
         if(!isSignUp){
-            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDwA_N026nTTaVl7-VGrVTomMYpG7EGoOE'
+            url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`
         }
         axios.post(url, authData)
         .then(response =>{
@@ -62,3 +63,6 @@ export const auth =(email, password, isSignUp)=>{
         })
     }
 }
+
+
+// AIzaSyDwA_N026nTTaVl7-VGrVTomMYpG7EGoOE
